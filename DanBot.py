@@ -34,8 +34,8 @@ async def on_message(message):
             response = f"This is your random number: {random.randrange(100)}"
             await message.channel.send(response)
             return
-        elif user_message.lower() == 'pow':
-            await message.channel.send('who the hell is Pow? i bet he is handsome as fuck')
+        elif user_message.lower() ==  # TODO: Replace this text here with a person you know. :
+            await message.channel.send(f"who the hell is [PERSON'S NAME]? i bet he is handsome/beautiful as heck.")
             return
 
     if user_message.lower() == '!anywhere':
