@@ -1,7 +1,21 @@
 import discord
 import random
 
-TOKEN =  # TODO: Replace this text here with your Discord token.
+file = open('TOKEN.txt', 'r')
+read = file.readline()
+
+TOKEN = read
+
+GREETING = ["hello", "hey", "hi", "whats up",
+            "what's up", "kamusta", "heyo",
+            "heyoo", "good day", "gday", "g'day",
+            "hello!", "hey!", "hi!", "whats up!",
+            "what's up!", "kamusta!", "heyo!",
+            "heyoo!", "good day!", "gday!", "g'day!"]
+FAREWELL = ["bye", "goodbye", "farewell",
+            "auf weidersehen", "seeya", "see you"
+            "bye!", "goodbye!", "farewell!",
+            "auf weidersehen!", "seeya!", "see you!"]
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -24,18 +38,24 @@ async def on_message(message):
         return
 
     if message.channel.name == 'general':
-        if user_message.lower() == '!hello':
-            await message.channel.send(f"What's up, {username}!")
+        if user_message.lower() in GREETING:
+            greeting_response = [f"What's up, {username}!",
+                                 f"Hello, {username}!",
+                                 f"{username}, hi there!",
+                                 "What's cookin'!"]
+            await message.channel.send(random.choice(greeting_response))
             return
-        elif user_message.lower() == '!bye' and 'bye':
-            await message.channel.send(f'Going so soon, {username}? See you another time!')
+
+        elif user_message.lower() in FAREWELL:
+            farewell_response = [f'Going so soon, {username}? See you another time!',
+                                 f'Aww, going already? Take care, {username}.',
+                                 f'Hey {username}, have a good day!']
+            await message.channel.send(random.choice(farewell_response))
             return
+
         elif user_message.lower() == '!random':
-            response = f"This is your random number: {random.randrange(100)}"
+            response = f"This is your random number (0-100): {random.randrange(100)}"
             await message.channel.send(response)
-            return
-        elif user_message.lower() ==  # TODO: Replace this text here with a person you know. :
-            await message.channel.send(f"who the hell is [PERSON'S NAME]? i bet he is handsome/beautiful as heck.")
             return
 
     if user_message.lower() == '!anywhere':
